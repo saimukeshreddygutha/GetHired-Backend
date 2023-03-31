@@ -27,8 +27,9 @@ public class JobSeeker {
 
     private LocalDate dateOfBirth;
 
+    private String location;
 
-    public JobSeeker(Long id, String name, int age, String email, String gender, LocalDate createdTime, LocalDate dateOfBirth) {
+    public JobSeeker(Long id, String name, int age, String email, String gender, LocalDate createdTime, LocalDate dateOfBirth, String location) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -36,6 +37,7 @@ public class JobSeeker {
         this.gender = gender;
         this.createdTime = createdTime;
         this.dateOfBirth = dateOfBirth;
+        this.location = location;
     }
 
     public Long getId() {
@@ -92,5 +94,13 @@ public class JobSeeker {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
