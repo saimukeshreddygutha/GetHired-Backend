@@ -3,6 +3,8 @@ package com.project.jobportal.controller;
 import com.project.jobportal.entity.User;
 import com.project.jobportal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +21,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<Void> addNewUser(@RequestBody User user){
         userService.registerNewUser(user);
-        return ResponseEntity.noContent().build();
+        return new ResponseEntity(null, HttpStatus.CREATED);
     }
 
     @GetMapping("/users")
