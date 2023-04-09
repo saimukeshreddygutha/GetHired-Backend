@@ -31,6 +31,12 @@ public class JobSeekerController {
     @Autowired
     private JobSeekerExperienceRepository experienceRepository;
 
+    @GetMapping("/get-id/{username}")
+    public Long getJobSeekerId(@PathVariable String username){
+        return jobSeekerRepository.findByUsername(username).orElse(null) != null ? jobSeekerRepository.findByUsername(username).get().getId() : -1;
+    }
+
+
     @PostMapping("/add")
     public ResponseEntity<JobSeeker> addJobSeeker(@RequestBody JobSeeker jobSeeker){
         jobSeeker.setId(sequenceGeneratorService.generateSequence(jobSeeker.SEQUENCE_NAME));

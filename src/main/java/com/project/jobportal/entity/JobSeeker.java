@@ -29,7 +29,17 @@ public class JobSeeker {
 
     private String location;
 
-    public JobSeeker(Long id, String name, int age, String email, String gender, LocalDate createdTime, LocalDate dateOfBirth, String location) {
+    private String username;
+
+    private boolean isBlocked;
+
+    private boolean educationDetailsPresent;
+
+    private int numberOfJobApplications;
+
+    private String resumeLink;
+
+    public JobSeeker(Long id, String name, int age, String email, String gender, LocalDate createdTime, LocalDate dateOfBirth, String location, String username, String resumeLink) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -38,6 +48,11 @@ public class JobSeeker {
         this.createdTime = createdTime;
         this.dateOfBirth = dateOfBirth;
         this.location = location;
+        this.username = username;
+        this.isBlocked = false;
+        this.educationDetailsPresent = false;
+        this.numberOfJobApplications = 0;
+        this.resumeLink = resumeLink;
     }
 
     public Long getId() {
@@ -102,5 +117,45 @@ public class JobSeeker {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
+
+    public boolean isEducationDetailsPresent() {
+        return educationDetailsPresent;
+    }
+
+    public void setEducationDetailsPresent(boolean educationDetailsPresent) {
+        this.educationDetailsPresent = educationDetailsPresent;
+    }
+
+    public int getNumberOfJobApplications() {
+        return numberOfJobApplications;
+    }
+
+    public void setNumberOfJobApplications(int numberOfJobApplications) {
+        this.numberOfJobApplications = numberOfJobApplications;
+    }
+
+    public String getResumeLink() {
+        return resumeLink;
+    }
+
+    public void setResumeLink(String resumeLink) {
+        this.resumeLink = resumeLink;
     }
 }

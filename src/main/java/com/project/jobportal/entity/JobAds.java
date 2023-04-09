@@ -28,10 +28,20 @@ public class JobAds {
 
     private LocalDate createdDate;
 
+    private String packageDetails;
+
+    private String experienceRequired;
+
+    private String skillsRequired;
+
+    private String recruiterUsername;
+
+    private boolean isRequirementfullfilled;
+
     public JobAds() {
     }
 
-    public JobAds(Long jobId, Long recruiterId, String companyName, String description, String roleName, String location, LocalDate createdDate) {
+    public JobAds(Long jobId, Long recruiterId, String companyName, String description, String roleName, String location, LocalDate createdDate, String packageDetails, String experienceRequired, String skillsRequired, String recruiterUsername) {
         this.jobId = jobId;
         this.recruiterId = recruiterId;
         this.companyName = companyName;
@@ -39,6 +49,11 @@ public class JobAds {
         this.roleName = roleName;
         this.location = location;
         this.createdDate = createdDate;
+        this.packageDetails = packageDetails;
+        this.experienceRequired = experienceRequired;
+        this.skillsRequired = skillsRequired;
+        this.recruiterUsername = recruiterUsername;
+        this.isRequirementfullfilled=false;
     }
 
     public Long getJobId() {
@@ -95,5 +110,45 @@ public class JobAds {
 
     public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public String getPackageDetails() {
+        return packageDetails;
+    }
+
+    public void setPackageDetails(String packageDetails) {
+        this.packageDetails = packageDetails;
+    }
+
+    public String getExperienceRequired() {
+        return experienceRequired;
+    }
+
+    public void setExperienceRequired(String experienceRequired) {
+        this.experienceRequired = experienceRequired;
+    }
+
+    public String getSkillsRequired() {
+        return skillsRequired;
+    }
+
+    public void setSkillsRequired(String skillsRequired) {
+        this.skillsRequired = skillsRequired;
+    }
+
+    public String getRecruiterUsername() {
+        return recruiterUsername;
+    }
+
+    public void setRecruiterUsername(String recruiterUsername) {
+        this.recruiterUsername = recruiterUsername;
+    }
+
+    public boolean isRequirementfullfilled() {
+        return isRequirementfullfilled;
+    }
+
+    public void setRequirementfullfilled(boolean requirementfullfilled) {
+        isRequirementfullfilled = requirementfullfilled;
     }
 }

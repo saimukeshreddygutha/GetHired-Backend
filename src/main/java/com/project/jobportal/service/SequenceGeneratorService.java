@@ -19,7 +19,7 @@ public class SequenceGeneratorService {
     @Autowired
     private MongoOperations mongoOperations;
 
-    public long generateSequence(String seqName) {
+    public Long generateSequence(String seqName) {
         DatabaseSequence counter = mongoOperations.findAndModify(query(Criteria.where("_id").is(seqName)),
                 new Update().inc("seq",1), options().returnNew(true).upsert(true),
                 DatabaseSequence.class);

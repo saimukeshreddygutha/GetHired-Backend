@@ -1,7 +1,9 @@
 package com.project.jobportal.controller;
 
 
+import com.project.jobportal.entity.JobAds;
 import com.project.jobportal.entity.Recruiter;
+import com.project.jobportal.repository.JobAdsRepository;
 import com.project.jobportal.repository.RecruiterRepository;
 import com.project.jobportal.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class RecruiterController {
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
 
+    @Autowired
+    JobAdsRepository jobAdsRepository;
+
     @GetMapping("/{id}")
     public Recruiter getRecruiter(@PathVariable Long id){
         return recruiterRepository.findById(id).orElse(null);
@@ -30,9 +35,15 @@ public class RecruiterController {
     public ResponseEntity<Recruiter> addRecruiter(@RequestBody Recruiter recruiter){
         recruiter.setId(sequenceGeneratorService.generateSequence(recruiter.SEQUENCE_NAME));
         recruiter.setCreatedDate(LocalDate.now());
-
         recruiterRepository.save(recruiter);
         return new ResponseEntity(recruiter, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{id}/add-job")
+    public ResponseEntity<JobAds> addJobAd(@PathVariable Long id, @RequestBody JobAds jobAds){
+        jobAds.setJobId(sequenceGeneratorService.generateSequence(JobAds.SEQUENCE_NAME));
+        jobAdsRepository.save(jobAds);
+        return new ResponseEntity(jobAds, HttpStatus.CREATED);
     }
 
 }
