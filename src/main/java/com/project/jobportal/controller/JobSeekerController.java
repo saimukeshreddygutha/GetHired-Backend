@@ -2,13 +2,12 @@ package com.project.jobportal.controller;
 
 
 import com.project.jobportal.entity.*;
-import com.project.jobportal.repository.JobSeekerEducationRepository;
-import com.project.jobportal.repository.JobSeekerExperienceRepository;
-import com.project.jobportal.repository.JobSeekerRepository;
+import com.project.jobportal.repository.*;
 import com.project.jobportal.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -30,6 +29,12 @@ public class JobSeekerController {
 
     @Autowired
     private JobSeekerExperienceRepository experienceRepository;
+
+    @Autowired
+    private JobApplicatonRepository jobApplicatonRepository;
+
+    @Autowired
+    private JobAdsRepository jobAdsRepository;
 
     @GetMapping("/get-id/{username}")
     public Long getJobSeekerId(@PathVariable String username){
@@ -74,5 +79,15 @@ public class JobSeekerController {
         JobSeekerExperience jobSeekerExperience = new JobSeekerExperience(id, experienceList);
         experienceRepository.save(jobSeekerExperience);
         return new ResponseEntity(jobSeekerExperience, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}/applied")
+    public List<JobApplication> getApplicationsForJobSeeker(@PathVariable Long id){
+        return jobApplicatonRepository.findByJobSeekerId(id);
+    }
+
+    @GetMapping("/{id}/jobads")
+    public List<JobAds> getAllJobAds(@PathVariable Long id){
+        return jobAdsRepository.findAll();
     }
 }
