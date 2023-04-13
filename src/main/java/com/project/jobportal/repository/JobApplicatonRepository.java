@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface JobApplicatonRepository extends MongoRepository<JobApplication, Long> {
 
-    List<JobApplication> findByJobSeekerId(Long id);
+    List<JobApplication> findByJobSeekerUsername(String username);
 }

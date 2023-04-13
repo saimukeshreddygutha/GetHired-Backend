@@ -14,7 +14,6 @@ public class Education {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    private int sem;
 
     public Education(String instituteName, String program, String branch, float cgpa, LocalDate startDate, LocalDate endDate, int sem) {
         this.instituteName = instituteName;
@@ -23,7 +22,6 @@ public class Education {
         this.cgpa = cgpa;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.sem = sem;
     }
 
     public Education() {
@@ -77,11 +75,5 @@ public class Education {
         this.endDate = endDate;
     }
 
-    public int getSem() {
-        return sem;
-    }
 
-    public void setSem(int sem) {
-        this.sem = sem;
-    }
 }

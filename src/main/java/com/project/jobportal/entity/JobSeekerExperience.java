@@ -10,13 +10,15 @@ public class JobSeekerExperience {
 
     private Long id;
 
+    private String username;
     List<Experience> experienceList;
 
     public JobSeekerExperience() {
     }
 
-    public JobSeekerExperience(Long id, List<Experience> experienceList) {
+    public JobSeekerExperience(Long id, String username, List<Experience> experienceList) {
         this.id = id;
+        this.username = username;
         this.experienceList = experienceList;
     }
 
