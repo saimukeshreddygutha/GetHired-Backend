@@ -53,7 +53,7 @@ public class JobAds {
         this.experienceRequired = experienceRequired;
         this.skillsRequired = skillsRequired;
         this.recruiterUsername = recruiterUsername;
-        this.isRequirementfullfilled=false;
+        this.isRequirementfullfilled = false;
     }
 
     public Long getJobId() {

@@ -55,7 +55,7 @@ public class JobSeekerController {
         return jobSeekerRepository.findAll();
     }
 
-    @PostMapping("/{id}/add-edu")
+    @PostMapping("/{id}/add/edu")
     public ResponseEntity<JobSeekerEducation> addEducation(@PathVariable long id, @RequestBody List<Education> educationList){
         JobSeeker jobSeeker = getJobSeeker(id);
         if(jobSeeker == null)return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
@@ -66,7 +66,7 @@ public class JobSeekerController {
     }
 
 
-    @PostMapping("/{id}/add-exp")
+    @PostMapping("/{id}/add/exp")
     public ResponseEntity<JobSeekerExperience> addExperience(@PathVariable long id, @RequestBody List<Experience> experienceList){
         JobSeeker jobSeeker = getJobSeeker(id);
         if(jobSeeker == null)return new ResponseEntity(null, HttpStatus.BAD_REQUEST);

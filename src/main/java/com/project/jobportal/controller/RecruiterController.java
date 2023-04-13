@@ -39,7 +39,7 @@ public class RecruiterController {
         return new ResponseEntity(recruiter, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{id}/add-job")
+    @PostMapping("/{id}/job/add")
     public ResponseEntity<JobAds> addJobAd(@PathVariable Long id, @RequestBody JobAds jobAds){
         jobAds.setJobId(sequenceGeneratorService.generateSequence(JobAds.SEQUENCE_NAME));
         jobAdsRepository.save(jobAds);
