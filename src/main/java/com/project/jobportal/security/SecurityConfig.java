@@ -44,6 +44,7 @@ public class SecurityConfig  {
                         auth -> auth
                                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/jobseeker/add").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/recruiter/add").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/user/{username}").permitAll()
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .anyRequest().authenticated()
