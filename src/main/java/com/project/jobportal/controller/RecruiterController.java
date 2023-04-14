@@ -2,8 +2,10 @@ package com.project.jobportal.controller;
 
 
 import com.project.jobportal.entity.JobAds;
+import com.project.jobportal.entity.JobApplication;
 import com.project.jobportal.entity.Recruiter;
 import com.project.jobportal.repository.JobAdsRepository;
+import com.project.jobportal.repository.JobApplicatonRepository;
 import com.project.jobportal.repository.RecruiterRepository;
 import com.project.jobportal.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class RecruiterController {
 
     @Autowired
     JobAdsRepository jobAdsRepository;
+
+    @Autowired
+    JobApplicatonRepository jobApplicatonRepository;
 
     @GetMapping("/get-id/{username}")
     public Long getJobSeekerId(@PathVariable String username){
@@ -61,4 +66,13 @@ public class RecruiterController {
         return  jobAdsRepository.findByRecruiterUsername(username);
     }
 
+    @GetMapping("/{username}/applications/jobad/{id}")
+    public List<JobApplication> getJobApplicationsByJobId(@PathVariable String username, @PathVariable Long id){
+        return jobApplicatonRepository.findByJobAdId(id);
+    }
+
+    @GetMapping("/{username}/application/{id}")
+    public JobApplication getJobApplication(@PathVariable String username, @PathVariable Long id){
+        return jobApplicatonRepository.findById(id).orElse(null);
+    }
 }

@@ -19,7 +19,7 @@ public class JobAdsController {
 
     @GetMapping("/get/{id}")
     public JobAds getAdd(@PathVariable Long id){
-        return jobAdsRepository.findById(id).get();
+        return jobAdsRepository.findById(id).orElse(null);
     }
 
 

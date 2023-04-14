@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Document(collection = "job_application")
@@ -31,19 +32,21 @@ public class JobApplication {
 
     private List<Experience> experienceList;
 
-    private String location;
+    private String jobSeekerLocation;
+
+    private String jobAdLocation;
     private String jobSeekerGender;
 
-    private String jobSeekerAge;
+    private int jobSeekerAge;
 
     private String jobSeekerEmail;
 
     private String jobSeekerResumeLink;
 
-    public JobApplication() {
-    }
+    private LocalDate appliedDate;
 
-    public JobApplication(Long id, Long jobAdId, Long jobSeekerId, String jobSeekerUsername, String companyName, Long recruiterId, String jobSeekerFullName, String recruiterUsername, List<Education> educationList, List<Experience> experienceList, String location, String jobSeekerGender, String jobSeekerAge, String jobSeekerEmail, String jobSeekerResumeLink) {
+
+    public JobApplication(Long id, Long jobAdId, Long jobSeekerId, String jobSeekerUsername, String companyName, Long recruiterId, String jobSeekerFullName, String recruiterUsername, List<Education> educationList, List<Experience> experienceList, String jobSeekerLocation, String jobAdLocation, String jobSeekerGender, int jobSeekerAge, String jobSeekerEmail, String jobSeekerResumeLink, LocalDate appliedDate) {
         this.id = id;
         this.jobAdId = jobAdId;
         this.jobSeekerId = jobSeekerId;
@@ -54,11 +57,16 @@ public class JobApplication {
         this.recruiterUsername = recruiterUsername;
         this.educationList = educationList;
         this.experienceList = experienceList;
-        this.location = location;
+        this.jobSeekerLocation = jobSeekerLocation;
+        this.jobAdLocation = jobAdLocation;
         this.jobSeekerGender = jobSeekerGender;
         this.jobSeekerAge = jobSeekerAge;
         this.jobSeekerEmail = jobSeekerEmail;
         this.jobSeekerResumeLink = jobSeekerResumeLink;
+        this.appliedDate = appliedDate;
+    }
+
+    public JobApplication() {
     }
 
     public Long getId() {
@@ -141,12 +149,20 @@ public class JobApplication {
         this.experienceList = experienceList;
     }
 
-    public String getLocation() {
-        return location;
+    public String getJobSeekerLocation() {
+        return jobSeekerLocation;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setJobSeekerLocation(String jobSeekerLocation) {
+        this.jobSeekerLocation = jobSeekerLocation;
+    }
+
+    public String getJobAdLocation() {
+        return jobAdLocation;
+    }
+
+    public void setJobAdLocation(String jobAdLocation) {
+        this.jobAdLocation = jobAdLocation;
     }
 
     public String getJobSeekerGender() {
@@ -157,11 +173,11 @@ public class JobApplication {
         this.jobSeekerGender = jobSeekerGender;
     }
 
-    public String getJobSeekerAge() {
+    public int getJobSeekerAge() {
         return jobSeekerAge;
     }
 
-    public void setJobSeekerAge(String jobSeekerAge) {
+    public void setJobSeekerAge(int jobSeekerAge) {
         this.jobSeekerAge = jobSeekerAge;
     }
 
@@ -180,4 +196,13 @@ public class JobApplication {
     public void setJobSeekerResumeLink(String jobSeekerResumeLink) {
         this.jobSeekerResumeLink = jobSeekerResumeLink;
     }
+
+    public LocalDate getAppliedDate() {
+        return appliedDate;
+    }
+
+    public void setAppliedDate(LocalDate appliedDate) {
+        this.appliedDate = appliedDate;
+    }
+
 }

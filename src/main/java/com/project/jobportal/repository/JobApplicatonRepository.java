@@ -8,4 +8,6 @@ import java.util.List;
 public interface JobApplicatonRepository extends MongoRepository<JobApplication, Long> {
 
     List<JobApplication> findByJobSeekerUsername(String username);
+    List<JobApplication> findByJobAdId(Long id);
+
 }

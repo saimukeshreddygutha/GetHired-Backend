@@ -45,6 +45,8 @@ public class SecurityConfig  {
                                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/jobseeker/add").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/recruiter/add").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/jobseeker/get-id/{username}").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/recruiter/get-id/{username}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/user/{username}").permitAll()
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .anyRequest().authenticated()

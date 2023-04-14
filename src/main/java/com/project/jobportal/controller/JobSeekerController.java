@@ -3,6 +3,7 @@ package com.project.jobportal.controller;
 
 import com.project.jobportal.entity.*;
 import com.project.jobportal.repository.*;
+import com.project.jobportal.service.JobApplicationService;
 import com.project.jobportal.service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
@@ -24,6 +27,9 @@ public class JobSeekerController {
 
     @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
+
+    @Autowired
+    private JobApplicationService jobApplicationService;
 
     @Autowired
     private JobSeekerEducationRepository educationRepository;
@@ -93,9 +99,12 @@ public class JobSeekerController {
         return jobApplicatonRepository.findByJobSeekerUsername(username);
     }
 
-    @GetMapping("/{username}/jobads")
+    @GetMapping("/{username}/jobads/all")
     public List<JobAds> getAllJobAds(@PathVariable String username){
-        return jobAdsRepository.findAll();
+        List<JobApplication> applications = jobApplicatonRepository.findByJobSeekerUsername(username);
+        Predicate<JobAds> notAppliedFilter = jobAd -> applications.stream()
+                .noneMatch(application -> application.getJobAdId().equals(jobAd.getJobId()));
+        return jobAdsRepository.findAll().stream().filter(notAppliedFilter).collect(Collectors.toList());
     }
 
     @GetMapping("/{username}/edu/get")
@@ -103,5 +112,11 @@ public class JobSeekerController {
         JobSeekerEducation jobSeekerEducation = educationRepository.findByUsername(username);
         if(jobSeekerEducation == null)return new ArrayList<Education>();
         return jobSeekerEducation.getEducationDetails();
+    }
+
+    @PostMapping("/{username}/jobads/{id}/apply")
+    public ResponseEntity<JobApplication> applyForJob(@PathVariable String username, @PathVariable Long id){
+        JobApplication jobApplication = jobApplicationService.applyForJobAd(username, id);
+        return new ResponseEntity(jobApplication, HttpStatus.CREATED);
     }
 }
