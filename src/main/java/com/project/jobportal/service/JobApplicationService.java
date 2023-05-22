@@ -32,7 +32,7 @@ public class JobApplicationService {
     @Autowired
     JobSeekerService jobSeekerService;
 
-    public JobApplication applyForJobAd(String username, Long jobAdId){
+    public JobApplication applyForJobAd(String username, Long jobAdId, Integer match){
 
         JobSeeker jobSeeker = jobSeekerRepository.findByUsername(username).get();
         JobAds jobAds = jobAdsRepository.findById(jobAdId).get();
@@ -56,6 +56,9 @@ public class JobApplicationService {
         jobApplication.setAppliedDate(LocalDate.now());
         jobApplication.setJobSeekerFullName(jobSeeker.getName());
         jobApplication.setId(sequenceGeneratorService.generateSequence(JobApplication.SEQUENCE_NAME));
+        jobApplication.setJobSeekerSkills(jobSeeker.getSkills());
+        jobApplication.setJobDescRequiredSkills(jobAds.getSkillsRequired());
+        jobApplication.setMatch(match);
         applicatonRepository.save(jobApplication);
 
         return jobApplication;

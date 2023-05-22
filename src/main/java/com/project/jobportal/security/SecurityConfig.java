@@ -8,7 +8,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -44,6 +43,7 @@ public class SecurityConfig  {
                         auth -> auth
                                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/jobseeker/add").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/jobseeker/username/{username}").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/recruiter/add").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/jobseeker/get-id/{username}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/recruiter/get-id/{username}").permitAll()

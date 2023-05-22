@@ -14,6 +14,7 @@ public class JobSeekerService {
     JobSeekerRepository jobSeekerRepository;
 
     public Long getJobSeekerIdByUsername(String username){
-        return jobSeekerRepository.findByUsername(username).isPresent() ? jobSeekerRepository.findByUsername(username).get().getId() : -1;
+        return jobSeekerRepository.
+                findByUsername(username).isPresent() ? jobSeekerRepository.findByUsername(username).get().getId() : -1;
     }
 }

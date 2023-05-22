@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -104,7 +105,7 @@ public class JobSeekerController {
         List<JobApplication> applications = jobApplicatonRepository.findByJobSeekerUsername(username);
         Predicate<JobAds> notAppliedFilter = jobAd -> applications.stream()
                 .noneMatch(application -> application.getJobAdId().equals(jobAd.getJobId()));
-        return jobAdsRepository.findAll().stream().filter(notAppliedFilter).collect(Collectors.toList());
+        return jobAdsRepository.findAll().stream().filter(notAppliedFilter).sorted(Comparator.comparing(JobAds::getCreatedDate).reversed()).collect(Collectors.toList());
     }
 
     @GetMapping("/{username}/edu/get")
@@ -115,8 +116,13 @@ public class JobSeekerController {
     }
 
     @PostMapping("/{username}/jobads/{id}/apply")
-    public ResponseEntity<JobApplication> applyForJob(@PathVariable String username, @PathVariable Long id){
-        JobApplication jobApplication = jobApplicationService.applyForJobAd(username, id);
+    public ResponseEntity<JobApplication> applyForJob(@PathVariable String username, @PathVariable Long id, @RequestBody MatchRequest matchRequest){
+        JobApplication jobApplication = jobApplicationService.applyForJobAd(username, id, matchRequest.getMatch());
         return new ResponseEntity(jobApplication, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{username}/skills")
+    public ResponseEntity<String> getJobSeekerSkills(@PathVariable String username){
+            return new ResponseEntity(getJobSeekerByUsername(username).getSkills(), HttpStatus.OK);
     }
 }

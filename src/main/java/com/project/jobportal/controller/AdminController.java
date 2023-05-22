@@ -1,6 +1,5 @@
 package com.project.jobportal.controller;
 
-
 import com.project.jobportal.entity.Admin;
 import com.project.jobportal.entity.JobAds;
 import com.project.jobportal.entity.JobSeeker;

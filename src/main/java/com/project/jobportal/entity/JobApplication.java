@@ -45,8 +45,14 @@ public class JobApplication {
 
     private LocalDate appliedDate;
 
+    private String jobSeekerSkills;
 
-    public JobApplication(Long id, Long jobAdId, Long jobSeekerId, String jobSeekerUsername, String companyName, Long recruiterId, String jobSeekerFullName, String recruiterUsername, List<Education> educationList, List<Experience> experienceList, String jobSeekerLocation, String jobAdLocation, String jobSeekerGender, int jobSeekerAge, String jobSeekerEmail, String jobSeekerResumeLink, LocalDate appliedDate) {
+    private String jobDescRequiredSkills;
+
+    public Integer match;
+
+
+    public JobApplication(Long id, Long jobAdId, Long jobSeekerId, String jobSeekerUsername, String companyName, Long recruiterId, String jobSeekerFullName, String recruiterUsername, List<Education> educationList, List<Experience> experienceList, String jobSeekerLocation, String jobAdLocation, String jobSeekerGender, int jobSeekerAge, String jobSeekerEmail, String jobSeekerResumeLink, LocalDate appliedDate, String jobSeekerSkills, String jobDescRequiredSkills, Integer match) {
         this.id = id;
         this.jobAdId = jobAdId;
         this.jobSeekerId = jobSeekerId;
@@ -64,6 +70,9 @@ public class JobApplication {
         this.jobSeekerEmail = jobSeekerEmail;
         this.jobSeekerResumeLink = jobSeekerResumeLink;
         this.appliedDate = appliedDate;
+        this.jobSeekerSkills = jobSeekerSkills;
+        this.jobDescRequiredSkills = jobDescRequiredSkills;
+        this.match = match;
     }
 
     public JobApplication() {
@@ -205,4 +214,27 @@ public class JobApplication {
         this.appliedDate = appliedDate;
     }
 
+    public String getJobSeekerSkills() {
+        return jobSeekerSkills;
+    }
+
+    public void setJobSeekerSkills(String jobSeekerSkills) {
+        this.jobSeekerSkills = jobSeekerSkills;
+    }
+
+    public String getJobDescRequiredSkills() {
+        return jobDescRequiredSkills;
+    }
+
+    public void setJobDescRequiredSkills(String jobDescRequiredSkills) {
+        this.jobDescRequiredSkills = jobDescRequiredSkills;
+    }
+
+    public Integer getMatch() {
+        return match;
+    }
+
+    public void setMatch(Integer match) {
+        this.match = match;
+    }
 }

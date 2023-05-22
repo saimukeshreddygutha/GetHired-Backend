@@ -15,7 +15,8 @@ public class Education {
     private LocalDate endDate;
 
 
-    public Education(String instituteName, String program, String branch, float cgpa, LocalDate startDate, LocalDate endDate, int sem) {
+    public Education(String instituteName, String program, String branch, float cgpa,
+                     LocalDate startDate, LocalDate endDate) {
         this.instituteName = instituteName;
         this.program = program;
         this.branch = branch;

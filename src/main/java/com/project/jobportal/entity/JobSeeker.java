@@ -39,7 +39,9 @@ public class JobSeeker {
 
     private String resumeLink;
 
-    public JobSeeker(Long id, String name, int age, String email, String gender, LocalDate createdTime, LocalDate dateOfBirth, String location, String username, String resumeLink) {
+    private String skills;
+
+    public JobSeeker(Long id, String name, int age, String email, String gender, LocalDate createdTime, LocalDate dateOfBirth, String location, String username, String resumeLink, String skills) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -53,6 +55,7 @@ public class JobSeeker {
         this.educationDetailsPresent = false;
         this.numberOfJobApplications = 0;
         this.resumeLink = resumeLink;
+        this.skills = skills;
     }
 
     public Long getId() {
@@ -157,5 +160,13 @@ public class JobSeeker {
 
     public void setResumeLink(String resumeLink) {
         this.resumeLink = resumeLink;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
     }
 }

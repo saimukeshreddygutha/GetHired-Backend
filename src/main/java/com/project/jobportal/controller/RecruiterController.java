@@ -68,7 +68,12 @@ public class RecruiterController {
 
     @GetMapping("/{username}/applications/jobad/{id}")
     public List<JobApplication> getJobApplicationsByJobId(@PathVariable String username, @PathVariable Long id){
-        return jobApplicatonRepository.findByJobAdId(id);
+        List<JobApplication> applications = jobApplicatonRepository.findByJobAdId(id);
+
+        applications.sort(Comparator.comparingInt(app -> app.getMatch() != null ? app.getMatch() : 0));
+        Collections.reverse(applications);
+
+        return applications;
     }
 
     @GetMapping("/{username}/application/{id}")
