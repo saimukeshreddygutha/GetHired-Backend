@@ -96,8 +96,13 @@ public class JobSeekerController {
     }
 
     @GetMapping("/{username}/applied")
-    public List<JobApplication> getApplicationsForJobSeeker(@PathVariable String username){
-        return jobApplicatonRepository.findByJobSeekerUsername(username);
+    public List<JobAds> getApplicationsForJobSeeker(@PathVariable String username){
+        List<Long> jobAdIds = jobApplicatonRepository.findByJobSeekerUsername(username)
+                .stream()
+                .map(JobApplication::getJobAdId)
+                .collect(Collectors.toList());
+
+        return jobAdsRepository.findAllById(jobAdIds);
     }
 
     @GetMapping("/{username}/jobads/all")

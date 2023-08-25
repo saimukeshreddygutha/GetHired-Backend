@@ -50,13 +50,12 @@ public class JobApplicationService {
         jobApplication.setExperienceList(jobSeekerExperience.getExperienceList());
         jobApplication.setRecruiterId(jobAds.getRecruiterId());
         jobApplication.setRecruiterUsername(jobAds.getRecruiterUsername());
-        jobApplication.setJobSeekerResumeLink(jobSeeker.getResumeLink());
         jobApplication.setJobAdLocation(jobAds.getLocation());
         jobApplication.setJobSeekerLocation(jobSeeker.getLocation());
         jobApplication.setAppliedDate(LocalDate.now());
         jobApplication.setJobSeekerFullName(jobSeeker.getName());
         jobApplication.setId(sequenceGeneratorService.generateSequence(JobApplication.SEQUENCE_NAME));
-        jobApplication.setJobSeekerSkills(jobSeeker.getSkills());
+        jobApplication.setJobSeekerSkills(jobSeeker.getResumeContent());
         jobApplication.setJobDescRequiredSkills(jobAds.getSkillsRequired());
         jobApplication.setMatch(match);
         applicatonRepository.save(jobApplication);
